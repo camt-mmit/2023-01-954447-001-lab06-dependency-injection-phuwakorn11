@@ -1,0 +1,14 @@
+<h2>Try Three</h2>
+
+<button type="button" (click)="add()">Add</button>
+<br />
+<div *ngFor="let item of items; let i = index">
+  <input
+    #elem
+    type="number"
+    [value]="item.value"
+    (change)="onChange(i, elem.valueAsNumber)"
+  />
+  <button type="button" (click)="delete(i)">Delete</button>
+</div>
+<output>{{ getResult() }}</output>
