@@ -14,6 +14,16 @@ export class DynamicInputComponent {
 
   @Output() readonly dataChange = new EventEmitter<void>();
 
+  isDisabled = true;
+
+  disabled() {
+    if (this.items.length === 1) {
+      this.isDisabled = true;
+    } else {
+      this.isDisabled = false;
+    }
+  }
+
   onChange(index: number, value: number): void {
     this.items[index].value = value;
     this.dataChange.emit();
@@ -22,13 +32,13 @@ export class DynamicInputComponent {
   addInput(): void {
     console.log('item');
     this.items.push({ value: 0 });
-
+    this.disabled();
     this.dataChange.emit();
   }
 
   deleteInput(index: number): void {
     this.items.splice(index, 1);
-
+    this.disabled();
     this.dataChange.emit();
   }
 
